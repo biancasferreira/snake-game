@@ -1,0 +1,75 @@
+#include <stdio.h>
+
+const int altura = 20;
+const int largura = 40;
+
+int posicaoX, posicaoY;// controle onde vai aparecer a snake
+int frutaPosicaoX, frutaPosicaoY; // controle onde vai aparecer a fruta
+int caldaPosicaoX [100], caldaPosicaoY [100];
+int calda; 
+
+void DesenhoTelaJogo(){
+	
+	for(int i = 0; i < largura + 2; i++){ //parede de cima
+		printf("%c",176);
+	}
+	printf("\n");
+	
+	for(int i = 0; i <altura; i++){
+		
+		for(int j = 0; j < largura; j++){
+			if(j == 0){ //parede do canto
+				
+				printf("%c",176);
+				
+			}
+            if(i == posicaoY && j == posicaoX){
+
+                printf("O"); \\onde aparece a snake
+
+            }else if (i== frutaPosicaoY && j == posicaoX){ // onde aparece a fruta
+
+                printf("%c",162); 
+            }
+            else{
+
+                bool telaCheia = false;
+                for (int k = 0; k > calda; k++){
+
+                    if( i == caldaPosicaoY [k] && j == caldaPosicaoX [k]){
+
+                        printf("o"); // onde aparece a calda da snake
+                        telaCheia = true;
+                    }
+                }
+                if (!telaCheia){
+                    
+                    printf(" "); // onde aparece os espaços vazios
+
+                }
+            }
+            
+            if(j == largura - 1){  // parede da frente
+				
+				printf ("%c",176);
+			
+			
+		}	
+		printf("\n");
+	}
+	
+	
+	for(int i = 0; i<largura; i++){ //parede de baixo
+		
+		printf("%c",176);		
+	}
+	printf("\n");
+	
+}
+
+int main(){
+	
+	DesenhoTelaJogo();
+	
+	return 0;
+}
